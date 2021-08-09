@@ -1,5 +1,10 @@
 package bankService
 
+import (
+	"github.com/grinrill/my-bank-service/domain/bankRules"
+)
+
+// AccountInterface Bank account interface
 type AccountInterface interface {
 	// AddFunds Позволяет внести на счёт сумму sum
 	AddFunds(sum float64) error
@@ -8,9 +13,9 @@ type AccountInterface interface {
 	// Withdraw Производит списание со счёта по указанным правилам. Если списание выходит за рамки правил, выдаёт ошибку
 	Withdraw(sum float64) error
 	// GetCurrency Выдаёт валюту счёта
-	GetCurrency() (string, error)
+	GetCurrency() (bankRules.Currency, error)
 	// GetAccountCurrencyRate Выдаёт курс валюты счёта к передаваемой валюте cur
-	GetAccountCurrencyRate(cur string) (float64, error)
+	GetAccountCurrencyRate(cur bankRules.Currency) (float64, error)
 	// GetBalance Выдаёт баланс счёта в указанной валюте
 	GetBalance(cur string) (float64, error)
 }
